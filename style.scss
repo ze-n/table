@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600;800&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    --bg: rgb(255, 136, 136);
+    --even-row-clr: rgb(35, 35, 48);
+    --odd-row-clr: rgb(51, 51, 70);
+    --clr: var(--even-row-clr);
+    --th-font-clr: rgb(241, 152, 141);
+    background: var(--bg);
+    font-family: montserrat;
+}
+
+section {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 2rem;
+}
+
+table {
+    text-align: left;
+    font-size: .9rem;
+    color: white;
+    border-collapse: collapse;
+    border-radius: .3rem;
+}
+
+caption {
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--clr);
+    letter-spacing: .4rem;
+}
+
+td,
+th {
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.103);
+}
+
+tr {
+    transition: transform .3s ease;
+}
+
+tr:hover {
+    transform: scale(1.05);
+}
+
+th {
+    font-weight: 400;
+    background: var(--clr);
+    color: var(--th-font-clr);
+}
+
+td {
+    font-weight: 300;
+}
+
+thead tr,
+tfoot tr {
+    transform: scale(1.05);
+}
+
+tfoot td {
+    background: var(--even-row-clr);
+}
+
+tr:nth-of-type(even) {
+    background: var(--even-row-clr);
+}
+
+tr:nth-of-type(odd) {
+    background: var(--odd-row-clr);
+}
+
+tr.max {
+    color: var(--bg);
+    font-weight: 400;
+    td {
+        font-weight: inherit;
+    }
+}
+
+@media screen and (max-width:850px) {
+    thead {
+        display: none;
+    }
+    table {
+        box-shadow: none;
+        border-radius: 0px;
+        border-bottom: none;
+    }
+    tbody td {
+        display: block;
+        text-align: right;
+        width: 90vw;
+        position: relative;
+        &::before {
+            content: attr(data-label);
+            text-align: left;
+            position: absolute;
+            width: 20%;
+            left: 0;
+            top: 0;
+            padding: 1rem 2rem;
+            background: var(--even-row-clr);
+        }
+    }
+    tr {
+        display: block;
+        margin-bottom: 1.5rem;
+        box-shadow: .5rem .5rem 0 0 var(--clr);
+        transform: translateX(-.25rem);
+        &:nth-of-type(even) {
+            background: var(--odd-row-clr);
+        }
+    }
+    tr:hover {
+        transform: scale(1.05) translate(-.25rem);
+    }
+    tfoot td {
+        display: table-cell;
+        width: 45vw;
+        text-align: right;
+    }
+    tfoot th {
+        width: 45vw;
+    }
+    tfoot tr {
+        transform: translateX(-.25rem) scale(1);
+    }
+}
